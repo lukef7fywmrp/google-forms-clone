@@ -7,14 +7,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "@/components/ui/command";
 import { useCommandDialogStore } from "@/store/store";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect } from "react";
-import IconButton from "./IconButton";
 import { IFormsEntity } from "oneentry/dist/forms/formsInterfaces";
+import { useCallback, useEffect } from "react";
 
 function Search({ forms }: { forms: IFormsEntity[] }) {
   const router = useRouter();
@@ -29,12 +27,15 @@ function Search({ forms }: { forms: IFormsEntity[] }) {
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [open]);
 
-  const runCommand = useCallback((command: () => unknown) => {
-    close();
-    command();
-  }, []);
+  const runCommand = useCallback(
+    (command: () => unknown) => {
+      close();
+      command();
+    },
+    [close]
+  );
 
   return (
     <>
