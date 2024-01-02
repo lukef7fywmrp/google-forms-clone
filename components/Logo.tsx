@@ -1,8 +1,14 @@
+import { cn } from "@/lib/utils";
 import { FormInputIcon } from "lucide-react";
 
-function Logo() {
+function Logo({ className }: { className?: string }) {
   return (
-    <div className="font-bold text-xl md:text-2xl flex items-center">
+    <div
+      className={cn(
+        "font-bold text-xl md:text-2xl flex items-center",
+        className
+      )}
+    >
       <FormInputIcon className="w-6 h-6 mr-2" />
       Google Forms
     </div>

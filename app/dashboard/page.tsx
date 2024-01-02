@@ -1,16 +1,7 @@
-import Header from "@/components/Header";
-import RecentForms from "@/components/RecentForms";
+import { redirect } from "next/navigation";
 
 function DashboardPage() {
-  return (
-    <>
-      <Header />
-
-      <main className="max-w-6xl mx-auto">
-        <RecentForms />
-      </main>
-    </>
-  );
+  redirect("/dashboard/forms");
 }
 
 export default DashboardPage;
