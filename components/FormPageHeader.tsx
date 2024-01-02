@@ -1,20 +1,17 @@
-import { fetchAllFormsData } from "@/lib/data";
-import { getResponses } from "@/lib/utils";
 import logo from "@/public/logo.png";
 import { UserButton } from "@clerk/nextjs";
 import { Folder, MoreVertical, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { IFormsEntity } from "oneentry/dist/forms/formsInterfaces";
-import FormTabs from "./FormTabs";
+import FormPageHeaderBottom from "./FormPageHeaderBottom";
 import IconButton from "./IconButton";
 import SendForm from "./SendForm";
 import { Button } from "./ui/button";
+import { Suspense } from "react";
+import { FormPageHeaderBottomSkeleton } from "./Skeletons";
 
 async function FormPageHeader({ form }: { form: IFormsEntity }) {
-  const formsData = await fetchAllFormsData();
-  const responses = getResponses(formsData, form.identifier);
-
   return (
     <header className="flex flex-col items-start sm:items-center gap-y-4 fixed w-full pt-4 px-4 bg-white shadow z-50">
       <div className="flex items-start w-full sm:items-center justify-between">
@@ -40,7 +37,9 @@ async function FormPageHeader({ form }: { form: IFormsEntity }) {
         </div>
       </div>
 
-      <FormTabs form={form} responses={responses.length} />
+      <Suspense fallback={<FormPageHeaderBottomSkeleton />}>
+        <FormPageHeaderBottom form={form} />
+      </Suspense>
     </header>
   );
 }

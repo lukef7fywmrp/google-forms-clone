@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IFormsEntity } from "oneentry/dist/forms/formsInterfaces";
+import { Skeleton } from "./ui/skeleton";
 
 const tabs = [
   {

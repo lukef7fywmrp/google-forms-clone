@@ -9,6 +9,8 @@ import { Button, buttonVariants } from "./ui/button";
 import { ArrowUpAzIcon, ChevronDown, Folder, List } from "lucide-react";
 import IconButton from "./IconButton";
 import FormList from "./FormList";
+import { Suspense } from "react";
+import { FormListSkeleton } from "./Skeletons";
 
 function RecentForms() {
   return (
@@ -41,7 +43,9 @@ function RecentForms() {
         </div>
       </div>
 
-      <FormList />
+      <Suspense fallback={<FormListSkeleton />}>
+        <FormList />
+      </Suspense>
     </section>
   );
 }

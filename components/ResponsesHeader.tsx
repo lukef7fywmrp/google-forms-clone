@@ -1,8 +1,7 @@
-import React from "react";
-import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import ResponsesTabs from "./ResponsesTabs";
 import { fetchAllFormsData } from "@/lib/data";
 import { getResponses } from "@/lib/utils";
+import ResponsesTabs from "./ResponsesTabs";
+import { Card, CardFooter, CardHeader, CardTitle } from "./ui/card";
 
 async function ResponsesHeader({ id }: { id: string }) {
   const formsData = await fetchAllFormsData();

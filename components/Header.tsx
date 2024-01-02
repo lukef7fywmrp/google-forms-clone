@@ -1,19 +1,17 @@
 import logo from "@/public/logo.png";
-import { Grip, Menu } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
+import { Grip } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import IconButton from "./IconButton";
 import Search from "./Search";
-import SearchMobile from "./SearchMobile";
-import { UserButton } from "@clerk/nextjs";
-import { fetchAllForms } from "@/lib/data";
 import Sidebar from "./Sidebar";
+import { SearchSkeleton } from "./Skeletons";
 
 async function Header() {
-  const forms = await fetchAllForms();
-
   return (
-    <header className="sticky top-0 flex justify-between px-4 py-2.5 bg-white z-50">
+    <header className="sticky top-0 flex justify-between gap-x-4 px-4 py-2.5 bg-white z-50 max-w-screen-2xl mx-auto">
       <div className="flex items-center space-x-2">
         <Sidebar />
         <Link href={"/"} className="flex items-center space-x-1">
@@ -22,12 +20,14 @@ async function Header() {
         </Link>
       </div>
 
-      <Search forms={forms} />
-
-      <div className="flex items-center">
-        <SearchMobile />
-        <IconButton Icon={Grip} className="mr-3" />
-        <UserButton afterSignOutUrl="/" />
+      <div className="flex items-center md:justify-between md:flex-1 max-w-lg lg:max-w-4xl xl:max-w-5xl">
+        <Suspense fallback={<SearchSkeleton />}>
+          <Search />
+        </Suspense>
+        <div className="flex items-center">
+          <IconButton Icon={Grip} className="mr-3" />
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </div>
     </header>
   );

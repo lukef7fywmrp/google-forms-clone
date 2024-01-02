@@ -14,6 +14,9 @@ export async function fetchMenuItems(marker: string) {
 
 export async function fetchAllForms() {
   try {
+    // add artificial delay to test loading state
+    // await new Promise((resolve) => setTimeout(resolve, 10000));
+
     const formsData = await api.Forms.getAllForms();
 
     const forms = Object.values(formsData)
