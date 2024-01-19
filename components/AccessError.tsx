@@ -27,7 +27,10 @@ function AccessError() {
         </Button>
         <div className="mt-4 text-center text-sm">
           Learn how to
-          <Link className="underline ml-1" href="#">
+          <Link
+            className="underline ml-1"
+            href="https://oneentry.cloud/en/instructions"
+          >
             get started
           </Link>
         </div>
